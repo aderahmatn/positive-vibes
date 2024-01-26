@@ -17,6 +17,23 @@ function check_member_not_login()
         redirect('', 'refresh');
     }
 }
+function check_admin_already_login()
+{
+    $CI = &get_instance();
+    $user_session = $CI->session->userdata('level');
+    if ($user_session == 'admin') {
+        redirect('dashboard', 'refresh');
+    }
+}
+function check_admin_not_login()
+{
+    $CI = &get_instance();
+    $user_session = $CI->session->userdata('level');
+    if ($user_session != 'admin') {
+        $CI->session->set_flashdata('error', 'Halaman tidak ditemukan!');
+        redirect('', 'refresh');
+    }
+}
 function check_already_login()
 {
     $CI = &get_instance();

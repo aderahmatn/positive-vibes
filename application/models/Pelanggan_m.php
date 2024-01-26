@@ -72,7 +72,7 @@ class Pelanggan_m extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
-    public function add_pelanggan($user_auth)
+    public function add_pelanggan($user_auth, $file)
     {
         $post = $this->input->post();
         $this->nik_ktp = $post['fnik_ktp'];
@@ -80,7 +80,7 @@ class Pelanggan_m extends CI_Model
         $this->telepon_pelanggan = $post['ftelepon_pelanggan'];
         $this->email_pelanggan = $post['femail_pelanggan'];
         $this->alamat_pelanggan = $post['falamat_pelanggan'];
-        $this->lampiran = "lampiran tes";
+        $this->lampiran = $file;
         $this->isactive = 1;
         $this->user_auth = $user_auth;
         $this->db->insert($this->_table, $this);
@@ -95,6 +95,18 @@ class Pelanggan_m extends CI_Model
         $this->db->set('alamat_id', $post['falamat_id']);
         $this->db->set('no_npwp', $post['fno_npwp']);
         $this->db->where('uid_customer', $id);
+        $this->db->update($this->_table);
+    }
+    public function nonaktifkan($id)
+    {
+        $this->db->set('isactive', 0);
+        $this->db->where('id_pelanggan', $id);
+        $this->db->update($this->_table);
+    }
+    public function aktifkan($id)
+    {
+        $this->db->set('isactive', 1);
+        $this->db->where('id_pelanggan', $id);
         $this->db->update($this->_table);
     }
     public function delete_customer($id)

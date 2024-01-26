@@ -27,67 +27,40 @@
                                     <th style="width: 15px">No</th>
                                     <th>NIK</th>
                                     <th>NAMA</th>
-                                    <th>EMAIL</th>
                                     <th>PHONE</th>
+                                    <th>EMAIL</th>
                                     <th>ALAMAT</th>
                                     <th>STATUS</th>
                                     <th>OPSI</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        3210298371628311
-                                    </td>
-                                    <td>
-                                        tohirudin
-                                    </td>
-                                    <td>
-                                        tohirudin@gmail.com
-                                    </td>
-                                    <td>
-                                        08666254115
-                                    </td>
-                                    <td>
-                                        cikupa
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-primary badge-pill badge-sm">Aktif</span>
-                                    </td>
-                                    <td>
-                                        <button class="btn-warning btn-xs btn">Nonaktifkan</button>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        3217635677188726
-                                    </td>
-                                    <td>
-                                        ridwan supena
-                                    </td>
-                                    <td>
-                                        ridwansup@gmail.com
-                                    </td>
-                                    <td>
-                                        08777254990
-                                    </td>
-                                    <td>
-                                        balaraja
-                                    </td>
+                                <?php
+                                $no = 1;
+                                foreach ($pelanggan as $key) : ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $key->nik_ktp ?></td>
+                                        <td><?= $key->nama_pelanggan ?></td>
+                                        <td><?= $key->telepon_pelanggan ?></td>
+                                        <td><?= $key->email_pelanggan ?></td>
+                                        <td><?= $key->alamat_pelanggan ?></td>
 
-                                    <td>
-                                        <span class="badge badge-primary badge-pill badge-sm">Aktif</span>
-                                    </td>
-                                    <td>
-                                        <button class="btn-warning btn-xs btn">Nonaktifkan</button>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
+                                        <td><span class="badge badge-pill <?= $key->isactive == 1 ? 'badge-primary' : 'badge-warning' ?>"><?= $key->isactive == 1 ? 'aktif' : 'nonaktif' ?></span></td>
+                                        <td>
+                                            <a href="<?= base_url('uploads/pelanggan/ktp/') . $key->lampiran ?>" class="btn-default btn-xs btn" target="_blank">Lihat KTP</a>
+                                            <button class="btn-success btn-xs btn">Edit Data</button>
+                                            <?php if ($key->isactive == 1) { ?>
+                                                <a href="<?= base_url('pelanggan/nonaktifkan/') . $key->id_pelanggan ?>" class="btn-warning btn-xs btn">Nonaktifkan</a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url('pelanggan/aktifkan/') . $key->id_pelanggan ?>" class="btn-primary btn-xs btn">Aktifkan</a>
+                                            <?php  } ?>
+
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
+
                             </tbody>
                         </table>
                     </div>

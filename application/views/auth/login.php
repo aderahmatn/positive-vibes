@@ -41,9 +41,7 @@
         <div class="card ">
             <div class="card-body login-card-body ">
                 <p class="login-box-msg">Login untuk memulai sesi anda</p>
-
-                <form action="<?= base_url('auth/process') ?>" method="post" autocomplete="off">
-                    <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+                <form action="" method="post" autocomplete="off">
                     <input type="hidden" name="flock" id="lock" style="display: none">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username" name="fusername" required>
@@ -63,7 +61,6 @@
                     </div>
                     <hr>
                     <div class=" row">
-
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block" name="login" id="valid">Log
                                 In</button>

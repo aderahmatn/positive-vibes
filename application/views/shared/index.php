@@ -54,6 +54,13 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <p class="m-0 text-muted text-md mr-4"><?= ucwords($this->session->userdata('nama_admin'))  ?></p>
+
+                </li>
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -110,7 +117,7 @@
 
                         <hr>
                         <li class="nav-item">
-                            <a href="<?= base_url('auth/logout') ?>" class="nav-link">
+                            <a href="<?= base_url('auth/logout_admin') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     LOGOUT

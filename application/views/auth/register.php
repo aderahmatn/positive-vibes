@@ -3,7 +3,7 @@
         <h1 class="font-weight-bold display-5 mb-3">Register <small class="h4 font-weight-light"> / Positive Vibes</small></h1>
         <div class="pr-5">
             <hr class="my-3 pr-5">
-            <form role="form" method="POST" action="" autocomplete="off">
+            <form role="form" method="POST" action="" autocomplete="off" enctype="multipart/form-data">
                 <div class="form-group required">
                     <label for="fnik_ktp" class="control-label">NIK KTP</label>
                     <input type="text" class="form-control <?= form_error('fnik_ktp') ? 'is-invalid' : '' ?>" id="fnik_ktp" name="fnik_ktp" placeholder="NIK KTP" value="<?= $this->input->post('fnik_ktp'); ?>">
@@ -52,6 +52,12 @@
                     <div class="invalid-feedback">
                         <?= form_error('falamat_pelanggan') ?>
                     </div>
+                </div>
+                <div class="form-group required">
+                    <label for="flampiran" class="control-label">Foto KTP</label>
+                    <input type="file" class="pb-4 form-control <?= form_error('flampiran') ? 'is-invalid' : '' ?>" id="flampiran" name="flampiran">
+                    <small id="flampiran" class="form-text text-muted">Format file .png .jpg dan file size
+                        maksimal 2Mb </small>
                 </div>
                 <button type="submit" class="btn btn-lg bg-gradient-warning  mt-2 text-bold">Daftar Sekarang</button>
             </form>

@@ -81,7 +81,7 @@
                 </div>
 
                 <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <?php if ($this->session->userdata('status') == 'login') { ?>
+                    <?php if ($this->session->userdata('level') == 'pelanggan') { ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
                                 <?= ucwords($this->session->userdata('nama_pelanggan'))  ?>

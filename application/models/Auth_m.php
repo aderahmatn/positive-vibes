@@ -41,7 +41,9 @@ class Auth_m extends CI_Model
         $this->db->from($this->_table);
         $this->db->where('username', $post['fusername']);
         $this->db->where('password', md5($post['fpassword']));
+        $this->db->where('level', $level);
         if ($level == 'pelanggan') {
+            $this->db->where('isactive', 1);
             $this->db->join('pelanggan', 'pelanggan.user_auth = auth.user_auth', 'left');
         }
         if ($level == 'admin') {
