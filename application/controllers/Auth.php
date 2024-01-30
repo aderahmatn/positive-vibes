@@ -40,6 +40,33 @@ class Auth extends CI_Controller
             }
         }
     }
+    public function edit($id_pelanggan)
+    {
+        $pelanggan = $this->Pelanggan_m;
+        $auth = $this->Auth_m;
+        $validation = $this->form_validation;
+        $validation->set_rules($auth->rules());
+        $data['pelanggan'] = $this->Pelanggan_m->get_by_id_pelanggan($id_pelanggan);
+        if ($data['pelanggan']) {
+            if ($validation->run() == FALSE) {
+                $this->template->load('shared/index', 'auth/edit', $data);
+            } else {
+                $post = $this->input->post(null, TRUE);
+                $user_auth = $data['pelanggan']->user_auth;
+                $auth->update_username_password($post, $user_auth);
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('success', 'Update username & password pelanggan berhasil');
+                    redirect('pelanggan/edit/' . $id_pelanggan, 'refresh');
+                } else {
+                    $this->session->set_flashdata('warning', 'Update username & password pelanggan batal');
+                    redirect('pelanggan/edit/' . $id_pelanggan, 'refresh');
+                }
+            }
+        } else {
+            $this->session->set_flashdata('warning', 'Data pelanggan tidak ditemukan');
+            redirect('pelanggan/edit/' . $id_pelanggan, 'refresh');
+        }
+    }
     public function register()
     {
         check_member_already_login();

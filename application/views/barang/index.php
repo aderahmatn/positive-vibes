@@ -34,94 +34,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>
-                                        <img src="<?= base_url() . 'uploads/tenda1.jpeg' ?>" alt="..." height="70px">
-
-                                    </td>
-                                    <td>
-                                        Tenda Senaru 2P
-                                    </td>
-                                    <td>
-                                        tenda </td>
-                                    <td>
-                                        Rp.100.000
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <img src="<?= base_url() . 'uploads/tenda2.jpeg' ?>" alt="..." height="70px">
-
-                                    </td>
-                                    <td>
-                                        Tenda Extreme 4P
-                                    </td>
-                                    <td>
-                                        tenda </td>
-                                    <td>
-                                        Rp.200.000
-                                    </td>
-                                    <td>
-                                        3
-                                    </td>
-                                    <td>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>
-                                        <img src="<?= base_url() . 'uploads/ransel1.jpeg' ?>" alt="..." height="70px">
-
-                                    </td>
-                                    <td>
-                                        Ransel Blue 20L
-                                    </td>
-                                    <td>
-                                        ransel </td>
-                                    <td>
-                                        Rp.150.000
-                                    </td>
-                                    <td>
-                                        4
-                                    </td>
-                                    <td>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>
-                                        <img src="<?= base_url() . 'uploads/ransel2.jpeg' ?>" alt="..." height="70px">
-
-                                    </td>
-                                    <td>
-                                        Ransel Expedition 35L
-                                    </td>
-                                    <td>
-                                        ransel </td>
-                                    <td>
-                                        Rp.180.000
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        <button class="btn-primary btn-xs btn">Edit</button>
-                                        <button class="btn-danger btn-xs btn">Hapus</button>
-                                    </td>
-                                </tr>
+                                <?php
+                                $no = 1;
+                                foreach ($barang as $key) : ?>
+                                    <tr class="text-uppercase">
+                                        <td><?= $no++ ?></td>
+                                        <td><img src="<?= base_url('uploads/barang/') . $key->gambar ?>" alt="foto barang" class="img-thumbnail" width="100px"></td>
+                                        <td><?= $key->nama_barang ?></td>
+                                        <td><?= $key->kategori ?></td>
+                                        <td><?= rupiah($key->harga_sewa) ?></td>
+                                        <td><?= $key->stok ?></td>
+                                        <td>
+                                            <a href="<?= base_url('barang/edit/') . $key->id_barang ?>" class="btn-primary btn-xs btn">Edit</a>
+                                            <a href="#" onclick="deleteConfirm('<?= base_url() . 'barang/delete/' . $key->id_barang ?>')" class="btn btn-xs btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach ?>
 
                             </tbody>
                         </table>

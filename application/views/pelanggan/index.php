@@ -49,7 +49,7 @@
                                         <td><span class="badge badge-pill <?= $key->isactive == 1 ? 'badge-primary' : 'badge-warning' ?>"><?= $key->isactive == 1 ? 'aktif' : 'nonaktif' ?></span></td>
                                         <td>
                                             <a href="<?= base_url('uploads/pelanggan/ktp/') . $key->lampiran ?>" class="btn-default btn-xs btn" target="_blank">Lihat KTP</a>
-                                            <button class="btn-success btn-xs btn">Edit Data</button>
+                                            <a href="<?= base_url('pelanggan/edit/') . $key->id_pelanggan ?>" class="btn-success btn-xs btn">Edit Data</a>
                                             <?php if ($key->isactive == 1) { ?>
                                                 <a href="<?= base_url('pelanggan/nonaktifkan/') . $key->id_pelanggan ?>" class="btn-warning btn-xs btn">Nonaktifkan</a>
                                             <?php } else { ?>

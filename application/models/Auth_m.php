@@ -52,6 +52,13 @@ class Auth_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+    public function update_username_password($post, $user_auth)
+    {
+        $this->db->set('username', $post['fusername']);
+        $this->db->set('password', md5($post['fpassword']));
+        $this->db->where('user_auth', $user_auth);
+        $this->db->update($this->_table);
+    }
 }
 
 /* End of file Auth_m.php */
