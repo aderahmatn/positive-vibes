@@ -7,6 +7,7 @@ class Ransel extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        check_member_not_login();
         $this->load->model(['Ransel_m', 'Barang_m', 'Item_sewa_m', 'Sewa_m']);
         $this->load->helper(['rupiah']);
     }
