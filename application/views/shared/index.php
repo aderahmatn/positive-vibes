@@ -114,6 +114,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('pengembalian') ?>" class="nav-link <?= $this->uri->segment(1) == 'pengembalian' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-file-import"></i>
+                                <p>
+                                    DATA PENGEMBALIAN
+                                </p>
+                            </a>
+                        </li>
 
                         <hr>
                         <li class="nav-item">

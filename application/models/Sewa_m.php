@@ -44,6 +44,37 @@ class Sewa_m extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_all_sewa()
+    {
+        $this->db->select('*');
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = sewa.id_user', 'left');
+        $this->db->where('sewa.deleted', 0);
+        $this->db->from($this->_table);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_all_sewa_no_return()
+    {
+        $this->db->select('*');
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = sewa.id_user', 'left');
+        $this->db->where('sewa.deleted', 0);
+        $this->db->where('sewa.is_return', 0);
+        $this->db->from($this->_table);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function set_payment($id)
+    {
+        $this->db->set('is_payment', 1);
+        $this->db->where('id_sewa', $id);
+        $this->db->update($this->_table);
+    }
+    public function set_return($no_sewa)
+    {
+        $this->db->set('is_return', 1);
+        $this->db->where('no_sewa', $no_sewa);
+        $this->db->update($this->_table);
+    }
     public function get_by_id_sewa($id_sewa)
     {
         $this->db->select('*');

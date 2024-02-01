@@ -2,11 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1 class="mt-2">LIST PENYEWAAN</h1>
+                <h1 class="mt-2">LIST PENGEMBALIAN</h1>
             </div>
             <div class="col-sm-6">
                 <div class=" float-sm-right justify-content-center">
-                    <!-- <a class="btn btn-md btn-primary mt-2" href="<?= base_url('users/create') ?>">TAMBAH USER</a> -->
+                    <a class="btn btn-md btn-primary mt-2" href="<?= base_url('pengembalian/create') ?>">TAMBAH PENGEMBALIAN</a>
+
                 </div>
             </div>
         </div>
@@ -28,32 +29,29 @@
                                     <th>No Sewa</th>
                                     <th>Nama Pelanggan</th>
                                     <th>Tgl Sewa</th>
-                                    <th>Total Hari</th>
+                                    <th>Tgl Pengembalian</th>
                                     <th>Total Bayar</th>
                                     <th>Tgl Transaksi</th>
-                                    <th>Status Pembayaran</th>
+                                    <th>Denda</th>
                                     <th>Detail</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($sewa as $key) : ?>
+                                foreach ($pengembalian as $key) : ?>
                                     <tr class="text-uppercase">
                                         <td><?= $no++ ?></td>
                                         <td><?= $key->no_sewa ?></td>
                                         <td><?= $key->nama_pelanggan ?></td>
                                         <td><?= TanggalIndo($key->tgl_awal)  . ' - ' . TanggalIndo($key->tgl_akhir) ?></td>
-                                        <td><?= $key->total_hari ?></td>
+                                        <td><?= TanggalIndo($key->tgl_pengembalian)  ?></td>
                                         <td><?= rupiah($key->total_bayar) ?></td>
                                         <td><?= TanggalIndo($key->tgl_transaksi)  ?></td>
-                                        <td>
-                                            <span class=" text-uppercase text-sm text-white badege badge-pill <?= $key->is_payment == 0 ? 'badge-warning' : 'badge-success' ?> "><small><?= $key->is_payment == 0 ? 'belum bayar' : 'sudah bayar' ?></small></span>
-                                        </td>
+                                        <td><?= rupiah($key->denda_pengembalian) ?></td>
                                         <td><a data-toggle="modal" onclick="showDetail(<?= $key->id_sewa ?>)" href="#modal_detail" class="btn  btn-outline-dark btn-xs">
                                                 Lihat Detail
                                             </a>
-                                            <a href="<?= base_url('sewa/confirm_pay/') . $key->id_sewa ?>" class="btn  btn-outline-success btn-xs <?= $key->is_payment == 0 ? '' : 'disabled' ?>"> Konfirmasi pembayaran</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
