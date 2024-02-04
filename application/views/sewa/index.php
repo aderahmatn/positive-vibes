@@ -32,6 +32,7 @@
                                     <th>Total Bayar</th>
                                     <th>Tgl Transaksi</th>
                                     <th>Status Pembayaran</th>
+                                    <th>Status Pengembalian</th>
                                     <th>Detail</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,9 @@
                                         <td><?= TanggalIndo($key->tgl_transaksi)  ?></td>
                                         <td>
                                             <span class=" text-uppercase text-sm text-white badege badge-pill <?= $key->is_payment == 0 ? 'badge-warning' : 'badge-success' ?> "><small><?= $key->is_payment == 0 ? 'belum bayar' : 'sudah bayar' ?></small></span>
+                                        </td>
+                                        <td>
+                                            <span class=" text-uppercase text-sm text-white badege badge-pill <?= $key->is_return == 0 ? 'badge-warning' : 'badge-success' ?> "><small><?= $key->is_return == 0 ? 'belum kembali' : 'sudah kembali' ?></small></span>
                                         </td>
                                         <td><a data-toggle="modal" onclick="showDetail(<?= $key->id_sewa ?>)" href="#modal_detail" class="btn  btn-outline-dark btn-xs">
                                                 Lihat Detail

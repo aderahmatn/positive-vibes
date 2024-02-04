@@ -17,6 +17,22 @@ class Sewa_m extends CI_Model
     public $is_payment;
     public $deleted;
 
+    public function rules_report()
+    {
+        return [
+            [
+                'field' => 'ftgl_awal',
+                'label' => 'tanggal awal',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'ftgl_akhir',
+                'label' => 'tanggal akhir',
+                'rules' => 'required'
+            ],
+        ];
+    }
+
     public function add_sewa($post, $no_sewa)
     {
         $post = $this->input->post();
@@ -37,12 +53,33 @@ class Sewa_m extends CI_Model
     public function get_all_by_id_pelanggan($id_pelanggan)
     {
         $this->db->select('*');
-        // $this->db->join('barang', 'barang.id_barang = ransel.id_barang', 'left');
         $this->db->where('id_user', $id_pelanggan);
         $this->db->where('sewa.deleted', 0);
         $this->db->from($this->_table);
         $query = $this->db->get();
         return $query->result();
+    }
+    public function get_by_range_tgl_transaksi($tgl_awal, $tgl_akhir)
+    {
+        $this->db->select('*');
+        $this->db->where('tgl_transaksi>=', $tgl_awal);
+        $this->db->where('tgl_transaksi<=', $tgl_akhir);
+        $this->db->where('sewa.deleted', 0);
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = sewa.id_user', 'left');
+        $this->db->from($this->_table);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_total_bayar_by_range_tgl_transaksi($tgl_awal, $tgl_akhir)
+    {
+        $this->db->select_sum('total_bayar');
+        $this->db->where('tgl_transaksi>=', $tgl_awal);
+        $this->db->where('tgl_transaksi<=', $tgl_akhir);
+        $this->db->where('sewa.deleted', 0);
+        $this->db->join('pelanggan', 'pelanggan.id_pelanggan = sewa.id_user', 'left');
+        $this->db->from($this->_table);
+        $query = $this->db->get();
+        return $query->row()->total_bayar;
     }
     public function get_all_sewa()
     {

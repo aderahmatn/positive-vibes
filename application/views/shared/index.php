@@ -122,6 +122,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('report') ?>" class="nav-link <?= $this->uri->segment(1) == 'report' || $this->uri->segment(1) == '' ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-file-alt"></i>
+                                <p>
+                                    LAPORAN
+                                </p>
+                            </a>
+                        </li>
 
                         <hr>
                         <li class="nav-item">

@@ -17,7 +17,7 @@
                         <form role="form" method="POST" action="" autocomplete="off" enctype="multipart/form-data">
                             <div class="form-group required">
                                 <label class="control-label" for="fno_sewa">No Sewa</label>
-                                <select class="form-control <?php echo form_error('fno_sewa') ? 'is-invalid' : '' ?>" id="fno_sewa" name="fno_sewa" onchange="tglPengembalianOnSet()">
+                                <select class="form-control <?php echo form_error('fno_sewa') ? 'is-invalid' : '' ?>" id="fno_sewa" name="fno_sewa" onchange="tglPengembalianOnSet()" <?= $sewa == null ? 'disabled' : '' ?>>
                                     <option hidden value="" selected>Pilih No Sewa </option>
                                     <?php foreach ($sewa as $key) : ?>
                                         <option value="<?= $key->no_sewa ?>" data-tglakhir="<?= $key->tgl_akhir ?> " data-tglawal="<?= $key->tgl_awal ?> " data-harga="<?= $key->total_harga ?> " <?= $this->input->post('fno_sewa') == $key->no_sewa ? 'selected' : '' ?>><?= strtoupper($key->no_sewa) . ' - ' . strtoupper($key->nama_pelanggan) ?></option>
