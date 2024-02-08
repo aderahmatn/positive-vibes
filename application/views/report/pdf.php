@@ -28,7 +28,7 @@ $pdf->SetFont('Arial', 'B', 10);
 
 $pdf->Cell(192, 20, 'LAPORAN TRANSAKSI PENYEWAAN', 0, 1, 'C');
 $pdf->SetFont('Arial', '', 9);
-$pdf->Cell(193, 7, 'PERIODE ' . TanggalIndo($tgl_awal) . " - " . TanggalIndo($tgl_awal), 0, 1, 'R');
+$pdf->Cell(193, 7, 'PERIODE ' . TanggalIndo($tgl_awal) . " - " . TanggalIndo($tgl_akhir), 0, 1, 'R');
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->SetFillColor(210, 221, 242);
 $pdf->Cell(10, 7, 'NO', 1, 0, 'C', true);

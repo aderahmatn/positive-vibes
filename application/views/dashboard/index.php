@@ -20,10 +20,10 @@
 
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>5</h3>
+                    <h3><?= $semua_sewa ?></h3>
                     <p>Total Penyewaan</p>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('sewa') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -31,10 +31,10 @@
 
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>2</h3>
+                    <h3><?= $sewa_kembali ?></h3>
                     <p>Sudah Kembali</p>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('sewa') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -42,10 +42,10 @@
 
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>3</h3>
+                    <h3><?= $sewa_belum_kembali ?></h3>
                     <p>Belum Kembali</p>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('sewa') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 
@@ -53,10 +53,10 @@
 
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>65</h3>
+                    <h3><?= $jumlah_barang ?></h3>
                     <p>Total Barang</p>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="<?= base_url('barang') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

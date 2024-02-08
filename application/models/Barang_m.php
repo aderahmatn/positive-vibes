@@ -53,6 +53,15 @@ class Barang_m extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_jumlah_barang()
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->order_by('id_barang', 'desc');
+        $this->db->where('deleted', 0);
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
     public function add_barang($post, $file)
     {
         $post = $this->input->post();

@@ -53,7 +53,7 @@
         <?php if ($sewa != null) { ?>
             <div class="card">
                 <div class="card-body">
-                    <a href="<?= base_url('report/pdf/') . $tgl_awal . '/' . $tgl_akhir ?>"> Download PDF</a>
+                    <a href="<?= base_url('report/pdf/') . $tgl_awal . '/' . $tgl_akhir ?>" class="btn btn-primary mb-4" target="_blank"> Download PDF</a>
                     <table class="table table-sm table-striped table-bordered"">
                     <thead>
                         <tr class=" text-center">
