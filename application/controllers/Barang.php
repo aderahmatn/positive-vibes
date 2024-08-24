@@ -8,7 +8,7 @@ class Barang extends CI_Controller
     {
         parent::__construct();
         check_admin_not_login();
-        $this->load->model(['Barang_m']);
+        $this->load->model(['Barang_m', 'Sewa_m', 'Item_sewa_m']);
         $this->load->helper(['rupiah']);
     }
 
@@ -16,6 +16,19 @@ class Barang extends CI_Controller
     {
         $data['barang'] = $this->Barang_m->get_all_barang();
         $this->template->load('shared/index', 'barang/index', $data);
+
+    }
+
+    public function stok_minus($id)
+    {
+        $data['sewa'] = $this->Sewa_m->get_by_id_sewa($id);
+        $data['barang'] = $this->Item_sewa_m->get_by_no_sewa($data['sewa']->no_sewa);
+        foreach ($data['barang'] as $key ) {
+            $last_stok = $this->Barang_m->get_stok_by_id_barang($key->id_barang);
+            $new_stok = $last_stok-1;
+            $this->Barang_m->update_stok($key->id_barang, $new_stok);
+        }
+        
     }
     public function create()
     {

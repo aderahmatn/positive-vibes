@@ -100,6 +100,15 @@ class Barang_m extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
+    public function get_stok_by_id_barang($id)
+    {
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->where('barang.id_barang', $id);
+        $this->db->where('barang.deleted', 0);
+        $query = $this->db->get();
+        return $query->row()->stok;
+    }
     public function get_by_kategori_barang($kategori)
     {
         $this->db->select('*');
@@ -112,6 +121,12 @@ class Barang_m extends CI_Model
     public function delete_barang($id)
     {
         $this->db->set('deleted', 1);
+        $this->db->where('id_barang', $id);
+        $this->db->update($this->_table);
+    }
+    public function update_stok($id, $new_stok)
+    {
+        $this->db->set('stok', $new_stok);
         $this->db->where('id_barang', $id);
         $this->db->update($this->_table);
     }

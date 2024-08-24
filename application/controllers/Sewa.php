@@ -7,7 +7,7 @@ class Sewa extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['Sewa_m', 'Item_sewa_m']);
+        $this->load->model(['Sewa_m', 'Item_sewa_m','Barang_m']);
         $this->load->helper(['rupiah']);
     }
 
@@ -34,8 +34,17 @@ class Sewa extends CI_Controller
         check_admin_not_login();
         $this->Sewa_m->set_payment($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'Konfirmasi pembayaran berhasil!');
-            redirect('sewa', 'refresh');
+            $data['sewa'] = $this->Sewa_m->get_by_id_sewa($id);
+            $data['barang'] = $this->Item_sewa_m->get_by_no_sewa($data['sewa']->no_sewa);
+            foreach ($data['barang'] as $key ) {
+                $last_stok = $this->Barang_m->get_stok_by_id_barang($key->id_barang);
+                $new_stok = $last_stok-1;
+                $this->Barang_m->update_stok($key->id_barang, $new_stok);
+             }
+             if ($this->db->affected_rows() > 0) {
+                 $this->session->set_flashdata('success', 'Konfirmasi pembayaran berhasil!');
+                redirect('sewa', 'refresh');
+             }
         }
     }
 }
